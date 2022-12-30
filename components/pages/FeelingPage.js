@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet } from "react-native";
 
-export default function FeelingPage(){
-    return (
-        <View>
-            <Text>How are you feeling?</Text>
-        </View>
-    );
+export default function FeelingPage({ navigation }) {
+  return (
+    <View>
+      <Text>How are you feeling?</Text>
+      <Button title="Next" onPress={() => navigation.navigate("Support")} />
+    </View>
+  );
 }

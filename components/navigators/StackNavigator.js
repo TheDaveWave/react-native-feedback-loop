@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomePage from "../pages/HomePage";
 import FeelingPage from "../pages/FeelingPage";
 import SupportPage from "../pages/SupportPage";
-import UnderstandingPage from "../pages/UnderstandPage"; 
+import UnderstandingPage from "../pages/UnderstandPage";
 import CommentPage from "../pages/CommentPage";
 import ReviewPage from "../pages/ReviewPage";
 import SuccessPage from "../pages/SuccessPage";

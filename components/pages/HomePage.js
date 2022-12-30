@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet } from "react-native";
 
-export default function HomePage() {
+export default function HomePage({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>This is the Home Page!</Text>
+      <Button title="Next" onPress={() => navigation.navigate("Feeling")} />
     </View>
   );
 }

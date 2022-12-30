@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet } from "react-native";
 
-export default function SupportPage() {
-    return (
-        <View>
-            <Text>How well do you feel supported?</Text>
-        </View>
-    );
+export default function SupportPage({ navigation }) {
+  return (
+    <View>
+      <Text>How well do you feel supported?</Text>
+      <Button title="Next" onPress={() => navigation.navigate("Understand")} />
+    </View>
+  );
 }
