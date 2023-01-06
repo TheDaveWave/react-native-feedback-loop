@@ -5,6 +5,7 @@ export default function HomePage({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.header}>This is the Home Page!</Text>
       <Button title="Start" onPress={() => navigation.navigate("Feeling")} />
+      <Button title="Previous Feedback" />
     </View>
   );
 }
