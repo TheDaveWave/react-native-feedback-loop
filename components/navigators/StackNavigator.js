@@ -12,8 +12,8 @@ import SuccessPage from "../pages/SuccessPage";
 /**
  * App should move through the pages in the following order:
  * Feeling Page
- * Understanding Page
  * Support Page
+ * Understanding Page
  * Comment Page
  * Review Page
  * Success Page
