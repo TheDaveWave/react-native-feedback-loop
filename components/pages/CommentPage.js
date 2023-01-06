@@ -21,7 +21,9 @@ export default function CommentPage({ navigation }) {
       <View style={styles.body}>
         <Text style={styles.header}>Any Comments?</Text>
         <TextInput
+          style={styles.input}
           // find a way to disable overflow and have a wrap.
+          multiline={true}
           placeholder="Comments..."
           onChangeText={setInputValue}
         />
@@ -41,6 +43,13 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: "#EAF1E3",
+  },
+  input: {
+    margin: 10,
+    padding: 5,
+    borderColor: "#000",
+    borderWidth: 1,
+    backgroundColor: "#fff",
   },
   header: {
     alignSelf: "center",
