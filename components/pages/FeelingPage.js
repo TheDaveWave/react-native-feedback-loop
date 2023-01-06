@@ -10,8 +10,12 @@ export default function FeelingPage({ navigation }) {
     <View style={styles.container}>
       <View style={styles.body}>
         <Text style={styles.header}>How are you feeling?</Text>
+        {/* Try to make the picker a separate component to be reused */}
         <Picker
           selectedValue={selectedValue}
+          // defined a name for the function being used in the onValueChange property,
+          // to test out what happens if an error occurs here as opposed to using an anonymous
+          // arrow function. 
           onValueChange={function changeValue(itemValue, itemIndex) {
             setSelectedValue(itemValue);
           }}
