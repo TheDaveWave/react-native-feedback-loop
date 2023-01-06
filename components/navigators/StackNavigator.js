@@ -9,6 +9,16 @@ import CommentPage from "../pages/CommentPage";
 import ReviewPage from "../pages/ReviewPage";
 import SuccessPage from "../pages/SuccessPage";
 
+/**
+ * App should move through the pages in the following order:
+ * Feeling Page
+ * Understanding Page
+ * Support Page
+ * Comment Page
+ * Review Page
+ * Success Page
+*/
+
 // set createNativeStackNavigator to Stack.
 const Stack = createNativeStackNavigator();
 
