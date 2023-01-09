@@ -1,11 +1,15 @@
-import { Button, View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet, Pressable } from "react-native";
+
+
 
 export default function HomePage({ navigation }) {
   return (
+    // Views act as divs or native equivalents.
     <View style={styles.container}>
-      <Text style={styles.header}>This is the Home Page!</Text>
-      <Button title="Start" onPress={() => navigation.navigate("Feeling")} />
-      <Button title="Previous Feedback" />
+      <Text style={styles.header}>Welcome to the Feedback Survey!</Text>
+      {/* <CustomButton title="Start" onPress={() => navigation.navigate("Feeling")} /> */}
+      {/* <Button title="Start" onPress={() => navigation.navigate("Feeling")} /> */}
+      {/* <Button title="Previous Feedback" /> */}
     </View>
   );
 }
@@ -13,11 +17,8 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
-    // alignItems: "center",
+    backgroundColor: "#fff",
+    alignItems: "center",
     justifyContent: "center",
-  },
-  header: {
-    alignSelf: "center",
   },
 });
