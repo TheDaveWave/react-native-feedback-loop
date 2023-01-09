@@ -1,5 +1,4 @@
-import { Button, View, Text, StyleSheet } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import { View, Text, StyleSheet } from "react-native";
 import { useState } from "react";
 import CustomButton from "../buttons/CustomButton";
 import CustomPicker from "../picker/CustomPicker";
