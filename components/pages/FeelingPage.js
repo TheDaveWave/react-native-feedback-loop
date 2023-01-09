@@ -1,6 +1,7 @@
 import { Button, View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
+import CustomButton from "../buttons/CustomButton";
 
 export default function FeelingPage({ navigation }) {
   // setup local state
@@ -15,7 +16,7 @@ export default function FeelingPage({ navigation }) {
           selectedValue={selectedValue}
           // defined a name for the function being used in the onValueChange property,
           // to test out what happens if an error occurs here as opposed to using an anonymous
-          // arrow function. 
+          // arrow function.
           onValueChange={function changeValue(itemValue, itemIndex) {
             setSelectedValue(itemValue);
           }}
@@ -28,7 +29,10 @@ export default function FeelingPage({ navigation }) {
         </Picker>
         <View style={styles.bottom}>
           <Text>{selectedValue}</Text>
-          <Button title="Next" onPress={() => navigation.navigate("Support")} />
+          <CustomButton
+            title="Next"
+            onPress={() => navigation.navigate("Support")}
+          />
         </View>
       </View>
     </View>
@@ -39,9 +43,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: "#122E72",
   },
   body: {
     backgroundColor: "#F2F3D9",
+    borderRadius: 10,
+    margin: 20,
+    padding: 20,
   },
   header: {
     alignSelf: "center",
