@@ -1,15 +1,16 @@
-import { Button, View, Text, StyleSheet, Pressable } from "react-native";
-
-
+import { View, Text, StyleSheet } from "react-native";
+import CustomButton from "../buttons/CustomButton";
 
 export default function HomePage({ navigation }) {
   return (
     // Views act as divs or native equivalents.
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to the Feedback Survey!</Text>
-      {/* <CustomButton title="Start" onPress={() => navigation.navigate("Feeling")} /> */}
-      {/* <Button title="Start" onPress={() => navigation.navigate("Feeling")} /> */}
-      {/* <Button title="Previous Feedback" /> */}
+      <CustomButton
+        title="Start"
+        onPress={() => navigation.navigate("Feeling")}
+      />
+      <CustomButton title="Previous Feedback" />
     </View>
   );
 }
@@ -17,7 +18,7 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#F2F3D9",
     alignItems: "center",
     justifyContent: "center",
   },

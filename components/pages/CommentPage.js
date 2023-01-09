@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   body: {
-    backgroundColor: "#EAF1E3",
+    backgroundColor: "#F2F3D9",
   },
   input: {
     margin: 10,
