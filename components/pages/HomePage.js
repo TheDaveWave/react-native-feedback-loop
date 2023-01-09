@@ -6,11 +6,13 @@ export default function HomePage({ navigation }) {
     // Views act as divs or native equivalents.
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to the Feedback Survey!</Text>
-      <CustomButton
-        title="Start"
-        onPress={() => navigation.navigate("Feeling")}
-      />
-      <CustomButton title="Previous Feedback" />
+      <View style={styles.content}>
+        <CustomButton
+          title="Start"
+          onPress={() => navigation.navigate("Feeling")}
+        />
+        <CustomButton title="Previous Feedback" />
+      </View>
     </View>
   );
 }
@@ -18,8 +20,14 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F2F3D9",
+    // backgroundColor: "#F2F3D9",
+    backgroundColor: "#122E72",
     alignItems: "center",
     justifyContent: "center",
+  },
+  content: {
+    backgroundColor: "#F2F3D9",
+    borderRadius: 10,
+    padding: 20,
   },
 });
