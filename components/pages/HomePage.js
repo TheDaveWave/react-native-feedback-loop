@@ -18,6 +18,10 @@ export default function HomePage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    color: "#fff",
+    flex: 0.1,
+  },
   container: {
     flex: 1,
     // backgroundColor: "#F2F3D9",
