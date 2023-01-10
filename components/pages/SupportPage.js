@@ -1,36 +1,31 @@
-import { Button, View, Text, StyleSheet } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import { useState } from "react";
+import CustomButton from "../buttons/CustomButton";
 import CustomPicker from "../picker/CustomPicker";
+
+const image = require("../../assets/dripglobe.jpeg");
 
 export default function SupportPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
 
   return (
     <View style={styles.container}>
-      <View style={styles.body}>
-        <Text style={styles.header}>How well do you feel supported?</Text>
-        {/* <Picker
-          selectedValue={selectedValue}
-          onValueChange={(itemValue, itemIndex) => {
-            setSelectedValue(itemValue);
-          }}
-        >
-          <Picker.Item label="1" value={1} />
-          <Picker.Item label="2" value={2} />
-          <Picker.Item label="3" value={3} />
-          <Picker.Item label="4" value={4} />
-          <Picker.Item label="5" value={5} />
-        </Picker> */}
-        <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
-        <View style={styles.bottom}>
-          <Text>{selectedValue}</Text>
-          <Button
-            title="Next"
-            onPress={() => navigation.navigate("Understand")}
+      <ImageBackground source={image} style={styles.image} resizeMode="cover">
+        <View style={styles.body}>
+          <Text style={styles.header}>How well do you feel supported?</Text>
+          <CustomPicker
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
           />
+          <View style={styles.bottom}>
+            <Text>{selectedValue}</Text>
+            <CustomButton
+              title="Next"
+              onPress={() => navigation.navigate("Understand")}
+            />
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -38,10 +33,17 @@ export default function SupportPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
   },
   body: {
+    width: "80%",
     backgroundColor: "#F2F3D9",
+    borderRadius: 10,
+    padding: 30,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   header: {
     alignSelf: "center",

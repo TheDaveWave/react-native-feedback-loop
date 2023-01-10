@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import CustomButton from "../buttons/CustomButton";
 
 const image = require("../../assets/dripglobe.jpeg");
@@ -7,12 +7,7 @@ export default function HomePage({ navigation }) {
   return (
     // Views act as divs or native equivalents.
     <View style={styles.container}>
-      <ImageBackground 
-        source={image} 
-        style={styles.image} 
-        resizeMode="cover"
-      >
-        {/* <Text style={styles.header}>Welcome to the Feedback Survey!</Text> */}
+      <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.content}>
           <CustomButton
             title="Start"
@@ -33,8 +28,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#122E72",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   content: {
     backgroundColor: "#F2F3D9",

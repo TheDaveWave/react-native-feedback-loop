@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import { useState } from "react";
 import CustomButton from "../buttons/CustomButton";
 import CustomPicker from "../picker/CustomPicker";
+
+const image = require("../../assets/dripglobe.jpeg");
 
 export default function FeelingPage({ navigation }) {
   // setup local state for CustomPicker
@@ -9,17 +11,22 @@ export default function FeelingPage({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.body}>
-        <Text style={styles.header}>How are you feeling?</Text>
-        <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
-        <View style={styles.bottom}>
-          <Text>{selectedValue}</Text>
-          <CustomButton
-            title="Next"
-            onPress={() => navigation.navigate("Support")}
+      <ImageBackground source={image} style={styles.image} resizeMode="cover">
+        <View style={styles.body}>
+          <Text style={styles.header}>How are you feeling?</Text>
+          <CustomPicker
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
           />
+          <View style={styles.bottom}>
+            <Text>{selectedValue}</Text>
+            <CustomButton
+              title="Next"
+              onPress={() => navigation.navigate("Support")}
+            />
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -27,17 +34,20 @@ export default function FeelingPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#122E72",
   },
   body: {
+    width: "80%",
     backgroundColor: "#F2F3D9",
     borderRadius: 10,
-    margin: 20,
-    padding: 20,
+    padding: 30,
   },
   header: {
     alignSelf: "center",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   bottom: {
     alignItems: "center",
