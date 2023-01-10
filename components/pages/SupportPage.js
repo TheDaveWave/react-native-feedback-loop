@@ -1,6 +1,7 @@
 import { Button, View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
+import CustomPicker from "../picker/CustomPicker";
 
 export default function SupportPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
@@ -9,7 +10,7 @@ export default function SupportPage({ navigation }) {
     <View style={styles.container}>
       <View style={styles.body}>
         <Text style={styles.header}>How well do you feel supported?</Text>
-        <Picker
+        {/* <Picker
           selectedValue={selectedValue}
           onValueChange={(itemValue, itemIndex) => {
             setSelectedValue(itemValue);
@@ -20,7 +21,8 @@ export default function SupportPage({ navigation }) {
           <Picker.Item label="3" value={3} />
           <Picker.Item label="4" value={4} />
           <Picker.Item label="5" value={5} />
-        </Picker>
+        </Picker> */}
+        <CustomPicker selectedValue={selectedValue} setSelectedValue={setSelectedValue}/>
         <View style={styles.bottom}>
           <Text>{selectedValue}</Text>
           <Button

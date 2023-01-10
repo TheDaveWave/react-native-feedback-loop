@@ -26,7 +26,17 @@ const Stack = createNativeStackNavigator();
 export default function StackNavigator() {
   return (
     // create a navigation stack and set the default route to Home.
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator 
+      initialRouteName="Home"
+      screenOptions={{
+        // headerStyle: {
+        //   backgroundColor: "#122E72",
+        // },
+        headerTintColor: "#fff",
+        headerShown: true,
+        headerTransparent: true,
+      }}
+    >
       <Stack.Screen name="Home" component={HomePage} />
       <Stack.Screen name="Feeling" component={FeelingPage} />
       <Stack.Screen name="Support" component={SupportPage} />
