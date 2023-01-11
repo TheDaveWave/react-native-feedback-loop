@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import CustomButton from "../buttons/CustomButton";
+import CommentDisplay from "../textComponents/CommentDisplay";
+import ScoreDisplay from "../textComponents/ScoreDisplay";
 
 const image = require("../../assets/dripglobe.jpeg");
 
@@ -9,9 +11,13 @@ export default function ReviewPage({ navigation }) {
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
           <Text style={styles.bodyHeader}>Feedback Review</Text>
-          <Text style={styles.bodyText}>
-            This will display the values chosen on the previous pages.
-          </Text>
+          {/* Where all the input information will be displayed. */}
+          <View style={styles.bodyTextContainer}>
+            {/* Display the scores */}
+            <ScoreDisplay />
+            {/* Display Comment */}
+            <CommentDisplay />
+          </View>
           <CustomButton
             title="Submit Feedback"
             onPress={() => navigation.navigate("Success")}
@@ -41,7 +47,7 @@ const styles = StyleSheet.create({
   bodyHeader: {
     alignSelf: "center",
   },
-  bodyText: {
+  bodyTextContainer: {
     marginBottom: 15,
     marginTop: 15,
   },

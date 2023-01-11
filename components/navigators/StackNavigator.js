@@ -27,7 +27,8 @@ export default function StackNavigator() {
   return (
     // create a navigation stack and set the default route to Home.
     <Stack.Navigator 
-      initialRouteName="Home"
+      // initialRouteName="Home"
+      initialRouteName="Review"
       screenOptions={{
         // headerStyle: {
         //   backgroundColor: "#122E72",
