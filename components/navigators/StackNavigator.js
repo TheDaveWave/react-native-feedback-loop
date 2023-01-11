@@ -17,7 +17,7 @@ import SuccessPage from "../pages/SuccessPage";
  * Comment Page
  * Review Page
  * Success Page
-*/
+ */
 
 // set createNativeStackNavigator to Stack.
 const Stack = createNativeStackNavigator();
@@ -26,7 +26,7 @@ const Stack = createNativeStackNavigator();
 export default function StackNavigator() {
   return (
     // create a navigation stack and set the default route to Home.
-    <Stack.Navigator 
+    <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
         // headerStyle: {
@@ -37,9 +37,9 @@ export default function StackNavigator() {
         headerTransparent: true,
       }}
     >
-      <Stack.Screen 
-        name="Home" 
-        component={HomePage} 
+      <Stack.Screen
+        name="Home"
+        component={HomePage}
         options={{
           headerShown: true,
         }}
