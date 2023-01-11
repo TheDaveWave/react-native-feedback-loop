@@ -23,7 +23,7 @@ export default function CommentPage({ navigation }) {
     >
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
-          <Text style={styles.header}>Any Comments?</Text>
+          <Text style={styles.bodyHeader}>Any Comments?</Text>
           <TextInput
             style={styles.input}
             multiline={true}
@@ -32,10 +32,13 @@ export default function CommentPage({ navigation }) {
           />
           <View style={styles.bottom}>
             <Text>Current Input: {inputValue}</Text>
-            <CustomButton
-              title="Next"
-              onPress={() => navigation.navigate("Review")}
-            />
+            <View style={styles.bodyBtnContainer}>
+              <CustomButton title="Back" onPress={() => navigation.goBack()} />
+              <CustomButton
+                title="Next"
+                onPress={() => navigation.navigate("Review")}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -53,6 +56,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
   },
+  bodyBtnContainer: {
+    flexDirection: "row",
+  },
   input: {
     margin: 10,
     padding: 5,
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  header: {
+  bodyHeader: {
     alignSelf: "center",
   },
   bottom: {

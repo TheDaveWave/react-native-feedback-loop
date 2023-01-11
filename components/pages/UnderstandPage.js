@@ -12,7 +12,7 @@ export default function UnderstandingPage({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
-          <Text style={styles.header}>
+          <Text style={styles.bodyHeader}>
             How well do you understand the content?
           </Text>
           <CustomPicker
@@ -21,10 +21,13 @@ export default function UnderstandingPage({ navigation }) {
           />
           <View style={styles.bottom}>
             <Text>{selectedValue}</Text>
-            <CustomButton
-              title="Next"
-              onPress={() => navigation.navigate("Comment")}
-            />
+            <View style={styles.bodyBtnContainer}>
+              <CustomButton title="Back" onPress={() => navigation.goBack()} />
+              <CustomButton
+                title="Next"
+                onPress={() => navigation.navigate("Comment")}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -42,12 +45,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
   },
+  bodyBtnContainer: {
+    flexDirection: "row",
+  },
   image: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  header: {
+  bodyHeader: {
     alignSelf: "center",
   },
   bottom: {

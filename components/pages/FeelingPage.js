@@ -13,17 +13,20 @@ export default function FeelingPage({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
-          <Text style={styles.header}>How are you feeling?</Text>
+          <Text style={styles.bodyHeader}>How are you feeling?</Text>
           <CustomPicker
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
           />
           <View style={styles.bottom}>
             <Text>{selectedValue}</Text>
-            <CustomButton
-              title="Next"
-              onPress={() => navigation.navigate("Support")}
-            />
+            <View style={styles.bodyBtnContainer}>
+              <CustomButton title="Back" onPress={() => navigation.goBack()} />
+              <CustomButton
+                title="Next"
+                onPress={() => navigation.navigate("Support")}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -41,8 +44,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
   },
-  header: {
+  bodyHeader: {
     alignSelf: "center",
+  },
+  bodyBtnContainer: {
+    flexDirection: "row",
   },
   image: {
     flex: 1,

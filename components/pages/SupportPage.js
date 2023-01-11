@@ -12,17 +12,20 @@ export default function SupportPage({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
-          <Text style={styles.header}>How well do you feel supported?</Text>
+          <Text style={styles.bodyHeader}>How well do you feel supported?</Text>
           <CustomPicker
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
           />
           <View style={styles.bottom}>
             <Text>{selectedValue}</Text>
-            <CustomButton
-              title="Next"
-              onPress={() => navigation.navigate("Understand")}
-            />
+            <View style={styles.bodyBtnContainer}>
+              <CustomButton title="Back" onPress={() => navigation.goBack()} />
+              <CustomButton
+                title="Next"
+                onPress={() => navigation.navigate("Understand")}
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -40,12 +43,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 30,
   },
+  bodyBtnContainer: {
+    flexDirection: "row",
+  },
   image: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  header: {
+  bodyHeader: {
     alignSelf: "center",
   },
   bottom: {

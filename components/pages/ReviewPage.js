@@ -16,6 +16,7 @@ export default function ReviewPage({ navigation }) {
             title="Submit Feedback"
             onPress={() => navigation.navigate("Success")}
           />
+          <CustomButton title="Back" onPress={() => navigation.goBack()} />
         </View>
       </ImageBackground>
     </View>
