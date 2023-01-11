@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { useDispatch } from "react-redux";
 import CustomButton from "../buttons/CustomButton";
 import CommentDisplay from "../textComponents/CommentDisplay";
 import ScoreDisplay from "../textComponents/ScoreDisplay";
@@ -6,6 +7,14 @@ import ScoreDisplay from "../textComponents/ScoreDisplay";
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function ReviewPage({ navigation }) {
+  const dispatch = useDispatch();
+
+  function clearFeedback() {
+    dispatch({
+      type: "CLEAR_FEEDBACK",
+    });
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
@@ -20,7 +29,7 @@ export default function ReviewPage({ navigation }) {
           </View>
           <CustomButton
             title="Submit Feedback"
-            onPress={() => navigation.navigate("Success")}
+            onPress={() => {navigation.navigate("Success"); clearFeedback();}}
           />
           <CustomButton title="Back" onPress={() => navigation.goBack()} />
         </View>

@@ -3,7 +3,7 @@ const feedbackInfo = {
   feeling: 3,
   support: 3,
   understanding: 3,
-  comment: "None",
+  comment: "",
 };
 
 const feedbackReducer = (state = feedbackInfo, action) => {

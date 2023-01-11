@@ -2,12 +2,22 @@ import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import { useState } from "react";
 import CustomButton from "../buttons/CustomButton";
 import CustomPicker from "../picker/CustomPicker";
+import { useDispatch } from "react-redux";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function FeelingPage({ navigation }) {
   // setup local state for CustomPicker
   const [selectedValue, setSelectedValue] = useState(3);
+
+  const dispatch = useDispatch();
+  // dispatch the selected value to the redux store.
+  function addFeeling() {
+    dispatch({
+      type: "ADD_FEELING",
+      payload: selectedValue,
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -24,7 +34,7 @@ export default function FeelingPage({ navigation }) {
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton
                 title="Next"
-                onPress={() => navigation.navigate("Support")}
+                onPress={() => {navigation.navigate("Support"); addFeeling();}}
               />
             </View>
           </View>

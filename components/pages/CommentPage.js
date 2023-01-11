@@ -8,11 +8,24 @@ import {
 } from "react-native";
 import { useState } from "react";
 import CustomButton from "../buttons/CustomButton";
+import { useDispatch, useSelector } from "react-redux";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function CommentPage({ navigation }) {
-  const [inputValue, setInputValue] = useState("");
+  // access the store to get the current comment.
+  const comment = useSelector((store) => store.comment);
+  // make local state initialze with the current redux state comment.
+  const [inputValue, setInputValue] = useState(comment);
+
+  const dispatch = useDispatch();
+
+  function addComment() {
+    dispatch({
+      type: "ADD_COMMENT",
+      payload: inputValue,
+    });
+  }
 
   return (
     <View
@@ -28,6 +41,7 @@ export default function CommentPage({ navigation }) {
             style={styles.input}
             multiline={true}
             placeholder="Comments..."
+            value={inputValue ? inputValue : ""}
             onChangeText={setInputValue}
           />
           <View style={styles.bottom}>
@@ -36,7 +50,10 @@ export default function CommentPage({ navigation }) {
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton
                 title="Next"
-                onPress={() => navigation.navigate("Review")}
+                onPress={() => {
+                  navigation.navigate("Review");
+                  addComment();
+                }}
               />
             </View>
           </View>

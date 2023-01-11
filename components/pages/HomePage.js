@@ -1,9 +1,18 @@
 import { View, StyleSheet, ImageBackground } from "react-native";
+import { useDispatch } from "react-redux";
 import CustomButton from "../buttons/CustomButton";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function HomePage({ navigation }) {
+  const dispatch = useDispatch();
+
+  function clearFeedback() {
+    dispatch({
+      type: "CLEAR_FEEDBACK",
+    });
+  }
+
   return (
     // Views act as divs or native equivalents.
     <View style={styles.container}>
@@ -11,7 +20,7 @@ export default function HomePage({ navigation }) {
         <View style={styles.content}>
           <CustomButton
             title="Start"
-            onPress={() => navigation.navigate("Feeling")}
+            onPress={() => {navigation.navigate("Feeling"); clearFeedback();}}
           />
           <CustomButton title="Previous Feedback" />
         </View>
@@ -21,10 +30,6 @@ export default function HomePage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    color: "#fff",
-    flex: 0.1,
-  },
   container: {
     flex: 1,
     backgroundColor: "#122E72",

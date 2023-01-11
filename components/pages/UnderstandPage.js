@@ -2,11 +2,21 @@ import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import { useState } from "react";
 import CustomButton from "../buttons/CustomButton";
 import CustomPicker from "../picker/CustomPicker";
+import { useDispatch } from "react-redux";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function UnderstandingPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
+
+  const dispatch = useDispatch();
+
+  function addUnderstanding() {
+    dispatch({
+      type: "ADD_UNDERSTANDING",
+      payload: selectedValue,
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -25,7 +35,7 @@ export default function UnderstandingPage({ navigation }) {
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton
                 title="Next"
-                onPress={() => navigation.navigate("Comment")}
+                onPress={() => {navigation.navigate("Comment"); addUnderstanding();}}
               />
             </View>
           </View>

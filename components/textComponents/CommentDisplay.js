@@ -8,7 +8,7 @@ export default function CommentDisplay() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Comment:</Text>
-      <Text style={styles.text}>{comment}</Text>
+      <Text style={styles.text}>{comment ? comment : "None"}</Text>
     </View>
   );
 }

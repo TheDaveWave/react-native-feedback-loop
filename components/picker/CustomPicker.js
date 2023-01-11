@@ -1,9 +1,6 @@
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
 
 export default function CustomPicker({ selectedValue, setSelectedValue }) {
-  // setup local state
-  const [pickerValue, setPickerValue] = useState(3);
   return (
     <Picker
       selectedValue={selectedValue}
