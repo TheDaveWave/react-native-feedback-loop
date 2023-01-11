@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
 export default function CommentDisplay() {
-    const testComment = "Super legit speaker today, awesome lecture, learned a bunch!";
+  // access the comment property from the store object.
+  const comment = useSelector((store) => store.comment);
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Comment:</Text>
-      <Text style={styles.text}>{testComment}</Text>
+      <Text style={styles.text}>{comment}</Text>
     </View>
   );
 }
