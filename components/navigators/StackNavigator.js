@@ -33,11 +33,17 @@ export default function StackNavigator() {
         //   backgroundColor: "#122E72",
         // },
         headerTintColor: "#fff",
-        headerShown: true,
+        headerShown: false,
         headerTransparent: true,
       }}
     >
-      <Stack.Screen name="Home" component={HomePage} />
+      <Stack.Screen 
+        name="Home" 
+        component={HomePage} 
+        options={{
+          headerShown: true,
+        }}
+      />
       <Stack.Screen name="Feeling" component={FeelingPage} />
       <Stack.Screen name="Support" component={SupportPage} />
       <Stack.Screen name="Understand" component={UnderstandingPage} />
