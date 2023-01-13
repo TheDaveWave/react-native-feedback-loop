@@ -20,9 +20,16 @@ export default function HomePage({ navigation }) {
         <View style={styles.content}>
           <CustomButton
             title="Start"
-            onPress={() => {navigation.navigate("Feeling"); clearFeedback();}}
+            onPress={() => {
+              navigation.navigate("Feeling");
+              clearFeedback();
+            }}
           />
           <CustomButton title="Previous Feedback" />
+          <CustomButton
+            title="Logout"
+            onPress={() => navigation.navigate("Login")}
+          />
         </View>
       </ImageBackground>
     </View>

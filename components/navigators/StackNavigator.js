@@ -1,6 +1,9 @@
+import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // component imports:
+import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import FeelingPage from "../pages/FeelingPage";
 import SupportPage from "../pages/SupportPage";
@@ -27,7 +30,7 @@ export default function StackNavigator() {
   return (
     // create a navigation stack and set the default route to Home.
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Login"
       screenOptions={{
         // headerStyle: {
         //   backgroundColor: "#122E72",
@@ -37,11 +40,28 @@ export default function StackNavigator() {
         headerTransparent: true,
       }}
     >
+      <Stack.Screen 
+        name="Signup"
+        component={SignupPage}
+        options={{
+          headerShown: true,
+          headerBackVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginPage}
+        options={{
+          headerShown: true,
+          headerBackVisible: false,
+        }}
+      />
       <Stack.Screen
         name="Home"
         component={HomePage}
         options={{
           headerShown: true,
+          headerBackVisible: false,
         }}
       />
       <Stack.Screen name="Feeling" component={FeelingPage} />

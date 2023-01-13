@@ -5,7 +5,6 @@ export default function CustomPicker({ selectedValue, setSelectedValue }) {
     <Picker
       selectedValue={selectedValue}
       onValueChange={(itemValue, itemIndex) => {
-        // setPickerValue(itemValue);
         setSelectedValue(itemValue);
       }}
     >
