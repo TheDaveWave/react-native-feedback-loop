@@ -6,7 +6,7 @@ const feedbackInfo = {
   comment: "",
 };
 
-const feedbackReducer = (state = feedbackInfo, action) => {
+function feedbackReducer(state = feedbackInfo, action) {
   switch (action.type) {
     case "ADD_FEELING":
       return { ...state, feeling: Number(action.payload) };

@@ -1,8 +1,8 @@
 import { createStore } from "redux";
-import feedbackReducer from "./reducers/feedback.reducer";
+import rootReducer from "./reducers/_root.reducer";
 
 const store = createStore(
-    feedbackReducer,
+    rootReducer,
 );
 
 export default store;

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function ScoreDisplay() {
   // access the redux store to get the scores.
-  const feedback = useSelector((store) => store);
+  const feedback = useSelector((store) => store.feedback);
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
