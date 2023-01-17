@@ -45,6 +45,7 @@ export default function SignupPage({ navigation }) {
               secureTextEntry={true}
             />
             {/* check if passwords match and if not display warning */}
+            {/* maybe change this to a single function to render warning. */}
             {passwordMatch() && (
               <Text style={{ color: "#FF0000" }}>Passwords do not match.</Text>
             )}
