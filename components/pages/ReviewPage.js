@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import CustomButton from "../buttons/CustomButton";
 import CommentDisplay from "../textComponents/CommentDisplay";
 import ScoreDisplay from "../textComponents/ScoreDisplay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const image = require("../../assets/dripglobe.jpeg");
 
@@ -13,6 +14,19 @@ export default function ReviewPage({ navigation }) {
     dispatch({
       type: "CLEAR_FEEDBACK",
     });
+  }
+
+  async function getAllKeys() {
+    let keys = [];
+    let values;
+    try {
+      keys = await AsyncStorage.getAllKeys();
+      values = await AsyncStorage.multiGet(keys);
+    } catch (err) {
+      console.log("Error in getting local keys", err);
+    }
+    console.log("Done getting keys:", keys);
+    console.log(values);
   }
 
   return (
@@ -32,6 +46,8 @@ export default function ReviewPage({ navigation }) {
             onPress={() => {navigation.navigate("Success"); clearFeedback();}}
           />
           <CustomButton title="Back" onPress={() => navigation.goBack()} />
+          {/* temporary log button to check local storage / async storage */}
+          <CustomButton title="Log" onPress={() => getAllKeys()}/>
         </View>
       </ImageBackground>
     </View>

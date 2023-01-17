@@ -13,23 +13,32 @@ export default function CustomPicker({
 }) {
   function handleChange(itemValue, itemIndex) {
     setSelectedValue(itemValue);
-    getAllKeys();
+    addLocalKey();
+    // getAllKeys();
   }
 
   // async functions to get and set local storage.
+  // adds a key value pair to local storage.
   async function addLocalKey() {
-    
+    try {
+      await AsyncStorage.setItem(localKey, selectedValue.toString());
+    } catch (err) {
+      console.log('Error adding key', err);
+    }
   }
 
   // gets all the current keys and logs them for debugging purposes.
   async function getAllKeys() {
     let keys = [];
+    let values;
     try {
       keys = await AsyncStorage.getAllKeys();
+      values = await AsyncStorage.multiGet(keys);
     } catch (err) {
       console.log("Error in getting local keys", err);
     }
     console.log("Done getting keys:", keys);
+    console.log(values);
   }
 
   return (

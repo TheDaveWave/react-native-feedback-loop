@@ -8,6 +8,9 @@ const image = require("../../assets/dripglobe.jpeg");
 
 export default function SupportPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
+  const routeName = `@${navigation
+    .getState()
+    .routes[navigation.getState().index].name.toLowerCase()}`;
 
   const dispatch = useDispatch();
 
@@ -26,6 +29,7 @@ export default function SupportPage({ navigation }) {
           <CustomPicker
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
+            localKey={routeName}
           />
           <View style={styles.bottom}>
             <Text>{selectedValue}</Text>
@@ -33,7 +37,10 @@ export default function SupportPage({ navigation }) {
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton
                 title="Next"
-                onPress={() => {navigation.navigate("Understand"); addSupport()}}
+                onPress={() => {
+                  navigation.navigate("Understand");
+                  addSupport();
+                }}
               />
             </View>
           </View>

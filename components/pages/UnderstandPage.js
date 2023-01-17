@@ -8,6 +8,9 @@ const image = require("../../assets/dripglobe.jpeg");
 
 export default function UnderstandingPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
+  const routeName = `@${navigation
+    .getState()
+    .routes[navigation.getState().index].name.toLowerCase()}`;
 
   const dispatch = useDispatch();
 
@@ -28,6 +31,7 @@ export default function UnderstandingPage({ navigation }) {
           <CustomPicker
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
+            localKey={routeName}
           />
           <View style={styles.bottom}>
             <Text>{selectedValue}</Text>
