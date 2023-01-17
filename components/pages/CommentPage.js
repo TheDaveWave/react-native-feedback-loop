@@ -18,9 +18,9 @@ export default function CommentPage({ navigation }) {
   const comment = useSelector((store) => store.comment);
   // make local state initialze with the current redux state comment.
   const [inputValue, setInputValue] = useState(comment);
-  const routeName = `@${navigation
+  const routeName = navigation
     .getState()
-    .routes[navigation.getState().index].name.toLowerCase()}`;
+    .routes[navigation.getState().index].name.toLowerCase();
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,11 @@ export default function CommentPage({ navigation }) {
   // adds a key value pair to local storage.
   async function addLocalKey() {
     try {
-      await AsyncStorage.setItem(routeName, inputValue.toString());
+      // await AsyncStorage.setItem(routeName, inputValue.toString());
+      await AsyncStorage.mergeItem(
+        "@User_Feedback",
+        JSON.stringify({ [routeName]: inputValue.toString() })
+      );
     } catch (err) {
       console.log("Error adding key", err);
     }

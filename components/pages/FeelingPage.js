@@ -11,8 +11,8 @@ export default function FeelingPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
   // get the index of the current screen within the navigation stack.
   const index = navigation.getState().index;
-  // use the index to get the current route name and add and @ symbol to the start.
-  const routeName = `@${navigation.getState().routes[index].name.toLowerCase()}`;
+  // use the index to get the current route name.
+  const routeName = navigation.getState().routes[index].name.toLowerCase();
 
   const dispatch = useDispatch();
   // dispatch the selected value to the redux store.

@@ -16,17 +16,21 @@ export default function ReviewPage({ navigation }) {
     });
   }
 
-  async function getAllKeys() {
+  async function getLocalFeedback() {
     let keys = [];
     let values;
+    let feedback;
     try {
-      keys = await AsyncStorage.getAllKeys();
-      values = await AsyncStorage.multiGet(keys);
+      // keys = await AsyncStorage.getAllKeys();
+      // values = await AsyncStorage.multiGet(keys);
+      feedback = await AsyncStorage.getItem("@User_Feedback");
+      feedback = JSON.parse(feedback);
     } catch (err) {
       console.log("Error in getting local keys", err);
     }
-    console.log("Done getting keys:", keys);
-    console.log(values);
+    // console.log("Done getting keys:", keys);
+    // console.log(values);
+    console.log(feedback !== null ? feedback : "Nothing here :(");
   }
 
   return (
@@ -43,11 +47,15 @@ export default function ReviewPage({ navigation }) {
           </View>
           <CustomButton
             title="Submit Feedback"
-            onPress={() => {navigation.navigate("Success"); clearFeedback();}}
+            onPress={() => {
+              navigation.navigate("Success");
+              clearFeedback();
+            }}
           />
           <CustomButton title="Back" onPress={() => navigation.goBack()} />
           {/* temporary log button to check local storage / async storage */}
-          <CustomButton title="Log" onPress={() => getAllKeys()}/>
+          <CustomButton title="Log" onPress={() => getLocalFeedback()} />
+          <CustomButton title="Clear" onPress={() => AsyncStorage.clear()} />
         </View>
       </ImageBackground>
     </View>

@@ -8,9 +8,9 @@ const image = require("../../assets/dripglobe.jpeg");
 
 export default function UnderstandingPage({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(3);
-  const routeName = `@${navigation
+  const routeName = navigation
     .getState()
-    .routes[navigation.getState().index].name.toLowerCase()}`;
+    .routes[navigation.getState().index].name.toLowerCase();
 
   const dispatch = useDispatch();
 

@@ -18,12 +18,25 @@ export default function CustomPicker({
   }
 
   // async functions to get and set local storage.
+
   // adds a key value pair to local storage.
   async function addLocalKey() {
     try {
-      await AsyncStorage.setItem(localKey, selectedValue.toString());
+      // await AsyncStorage.setItem(localKey, selectedValue.toString());
+      let keys = await AsyncStorage.getAllKeys();
+      if (keys.length === 0) {
+        await AsyncStorage.setItem(
+          "@User_Feedback",
+          JSON.stringify({ [localKey]: selectedValue.toString() })
+        );
+      } else {
+        await AsyncStorage.mergeItem(
+          "@User_Feedback",
+          JSON.stringify({ [localKey]: selectedValue.toString() })
+        );
+      }
     } catch (err) {
-      console.log('Error adding key', err);
+      console.log("Error adding key", err);
     }
   }
 
