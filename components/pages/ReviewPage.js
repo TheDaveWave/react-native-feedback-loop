@@ -17,19 +17,13 @@ export default function ReviewPage({ navigation }) {
   }
 
   async function getLocalFeedback() {
-    let keys = [];
-    let values;
     let feedback;
     try {
-      // keys = await AsyncStorage.getAllKeys();
-      // values = await AsyncStorage.multiGet(keys);
       feedback = await AsyncStorage.getItem("@User_Feedback");
       feedback = JSON.parse(feedback);
     } catch (err) {
       console.log("Error in getting local keys", err);
     }
-    // console.log("Done getting keys:", keys);
-    // console.log(values);
     console.log(feedback !== null ? feedback : "Nothing here :(");
   }
 
