@@ -1,17 +1,45 @@
 import { Picker } from "@react-native-picker/picker";
 // importing Async Storage to access local storage of device.
 // https://react-native-async-storage.github.io/async-storage/docs/api/
-// can only store 'string' data so for object data use JSON.stringify when
+// can only store 'string' data so for object data use JSON.stringify() when
 // saving data and JSON.parse() when loading data.
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // a component used to display a picker and display the selected value.
-export default function CustomPicker({ selectedValue, setSelectedValue, localKey }) {
+export default function CustomPicker({
+  selectedValue,
+  setSelectedValue,
+  localKey,
+}) {
+  function handleChange(itemValue, itemIndex) {
+    setSelectedValue(itemValue);
+    getAllKeys();
+  }
+
+  // async functions to get and set local storage.
+  async function addLocalKey() {
+    
+  }
+
+  // gets all the current keys and logs them for debugging purposes.
+  async function getAllKeys() {
+    let keys = [];
+    try {
+      keys = await AsyncStorage.getAllKeys();
+    } catch (err) {
+      console.log("Error in getting local keys", err);
+    }
+    console.log("Done getting keys:", keys);
+  }
+
   return (
     <Picker
       selectedValue={selectedValue}
+      // onValueChange={(itemValue, itemIndex) => {
+      //   setSelectedValue(itemValue);
+      // }}
       onValueChange={(itemValue, itemIndex) => {
-        setSelectedValue(itemValue);
+        handleChange(itemValue);
       }}
     >
       <Picker.Item label="1" value={1} />
