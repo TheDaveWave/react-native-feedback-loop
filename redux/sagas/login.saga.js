@@ -13,7 +13,7 @@ export default function* loginSaga() {
 
 function* loginUser(action) {
   try {
-    yield axios.post("/api/user/login", action.payload, config);
+    yield axios.post("http://10.39.20.4:5000/api/user/login", action.payload, config);
     yield put({ type: "FETCH_USER" });
   } catch (err) {
     console.log("Error with user login:", err);
@@ -27,7 +27,7 @@ function* loginUser(action) {
 
 function* logoutUser(action) {
   try {
-    yield axios.post("/api/user/logout", config);
+    yield axios.post("http://10.39.20.4:5000/api/user/logout", config);
     yield put({ type: "CLEAR_USER" });
   } catch (err) {
     console.log("Error with user logout:", err);

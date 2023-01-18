@@ -12,7 +12,7 @@ export default function* userSaga() {
 
 function* fetchUser() {
   try {
-    const response = yield axios.get("/api/user", config);
+    const response = yield axios.get("http://10.39.20.4:5000/api/user", config);
     yield put({ type: "SET_USER", payload: response.data });
   } catch (err) {
     console.log("User get request failed", err);

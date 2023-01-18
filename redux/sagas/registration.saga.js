@@ -7,7 +7,7 @@ export default function* registrationSaga() {
 
 function* registerUser(action) {
     try {
-        yield axios.post("/api/user/register", action.payload);
+        yield axios.post("http://10.39.20.4:5000/api/user/register", action.payload);
         yield put({type: "LOGIN", payload: action.payload});
         // look into this put:
         // yield put({type: "SET_TO_LOGIN_MODE"});

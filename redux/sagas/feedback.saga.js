@@ -10,7 +10,7 @@ export default function* feedbackSaga() {
 // fetches feedback and stores it into redux.
 function* fetchFeedback() {
   try {
-    const response = yield axios.get("/api/feedback/user");
+    const response = yield axios.get("http://10.39.20.4:5000/api/feedback/user");
     yield put({ type: "SET_FEEDBACK", payload: response.data });
   } catch (err) {
     console.log("Error fetching feedback", err);
@@ -20,7 +20,7 @@ function* fetchFeedback() {
 // posts new feedback.
 function* postFeedback(action) {
   try {
-    yield axios.post("/api/feedback", action.payload);    
+    yield axios.post("http://10.39.20.4:5000/api/feedback", action.payload);    
   } catch (err) {
     console.log("Error posting feedback", err);
   }
@@ -29,7 +29,7 @@ function* postFeedback(action) {
 // deletes a feedback entry.
 function* deleteFeedback(action) {
     try {
-        yield axios.delete(`/api/feedback/${action.payload}`);
+        yield axios.delete(`http://10.39.20.4:5000/api/feedback/${action.payload}`);
     } catch (err) {
         console.log("Error in deleting feedback", err);
     }

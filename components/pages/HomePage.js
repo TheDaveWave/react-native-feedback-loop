@@ -14,11 +14,12 @@ export default function HomePage({ navigation }) {
   }
 
   function getStuff() {
-    fetch('http://192.168.0.88:5000/api/feedback')
+    fetch('http://10.39.20.4:5000/api/feedback')
     .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
+      return response.text();
+    }).then( t => {
+      console.log(t)
+    }).catch((err) => {
       console.log(err);
     });
   }
@@ -40,7 +41,9 @@ export default function HomePage({ navigation }) {
             title="Logout"
             onPress={() => navigation.navigate("Login")}
           />
+          {/* temporay buttons to test out a fetch and jump to review to see persisted data */}
           <CustomButton title="Fetch" onPress={() => getStuff()}/>
+          <CustomButton title="Review" onPress={() => navigation.navigate("Review")}/>
         </View>
       </ImageBackground>
     </View>

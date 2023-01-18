@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware.js");
 
 router.get("/", (req, res) => {
-    res.sendStatus(418);
+    res.send("Hello World!");
 });
 
 // add authentication here
