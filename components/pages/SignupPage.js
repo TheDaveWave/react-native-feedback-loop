@@ -7,11 +7,14 @@ import {
   Keyboard,
   Text,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import CustomButton from "../buttons/CustomButton";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function SignupPage({ navigation }) {
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
@@ -23,6 +26,27 @@ export default function SignupPage({ navigation }) {
       return false;
     } else {
       return true;
+    }
+  }
+
+  // register a new user.
+  function register() {
+    let check = false;
+    if (!username || !password || !confirmPass) {
+      check = false;
+    } else if (passwordMatch() === false && username && password) {
+      dispatch({
+        type: "REGISTER",
+        payload: {
+          username,
+          password,
+        },
+      });
+      check = true;
+    }
+    console.log(check);
+    if(check) {
+      navigation.navigate("Home");
     }
   }
 
@@ -60,7 +84,7 @@ export default function SignupPage({ navigation }) {
           <View>
             <CustomButton
               title="Sign Up"
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => register()}
             />
             <CustomButton
               title="Login"

@@ -5,6 +5,10 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
 
+router.get("/", (req, res) => {
+    res.sendStatus(418);
+});
+
 // add authentication here
 // get feedback for current user.
 router.get("/user", (req, res) => {

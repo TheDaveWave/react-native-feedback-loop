@@ -13,6 +13,16 @@ export default function HomePage({ navigation }) {
     });
   }
 
+  function getStuff() {
+    fetch('http://192.168.0.88:5000/api/feedback')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   return (
     // Views act as divs or native equivalents.
     <View style={styles.container}>
@@ -30,6 +40,7 @@ export default function HomePage({ navigation }) {
             title="Logout"
             onPress={() => navigation.navigate("Login")}
           />
+          <CustomButton title="Fetch" onPress={() => getStuff()}/>
         </View>
       </ImageBackground>
     </View>
