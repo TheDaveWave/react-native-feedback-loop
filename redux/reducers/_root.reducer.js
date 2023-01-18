@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import user from "./user.reducer";
-import feedback from "./feedback.reducer";
+import feedbackReducer from "./feedback.reducer";
 
 const rootReducer = combineReducers({
-    user,
-    feedback,
+  user,
+  feedbackReducer,
 });
 
 export default rootReducer;

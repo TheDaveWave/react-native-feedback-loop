@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function CommentDisplay() {
   // access the comment property from the store object.
-  const comment = useSelector((store) => store.feedback.comment);
+  const comment = useSelector((store) => store.feedbackReducer.score.comment);
 
   return (
     <View style={styles.container}>

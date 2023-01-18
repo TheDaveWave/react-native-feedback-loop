@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 // create the default state object for the feedback reducer.
 const feedbackInfo = {
   feeling: 3,
@@ -6,7 +7,7 @@ const feedbackInfo = {
   comment: "",
 };
 
-function feedbackReducer(state = feedbackInfo, action) {
+function score(state = feedbackInfo, action) {
   switch (action.type) {
     case "ADD_FEELING":
       return { ...state, feeling: Number(action.payload) };
@@ -22,5 +23,19 @@ function feedbackReducer(state = feedbackInfo, action) {
       return state;
   }
 };
+
+function feedback(state = [], action) {
+  switch (action.type) {
+    case "SET_FEEDBACK":
+        return action.payload;
+    default:
+      return state;
+  }
+}
+
+const feedbackReducer = combineReducers({
+  feedback,
+  score,
+});
 
 export default feedbackReducer;

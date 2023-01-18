@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "server": "node server/server.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -20,6 +21,7 @@
     "expo-status-bar": "~1.4.2",
     "express": "^4.18.2",
     "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.8.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",

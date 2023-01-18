@@ -7,8 +7,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const userRouter = require("./routes/user.router.js");
+const feedbackRouter = require("./routes/feedback.router.js");
 
 app.use("/api/user", userRouter);
+app.use("/api/feedback", feedbackRouter);
 
 app.use(express.static("build"));
 
