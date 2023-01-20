@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -6,11 +6,15 @@ import {
   TextInput,
   Keyboard,
 } from "react-native";
+import { AuthContext } from "../../context/AuthContext";
 import CustomButton from "../buttons/CustomButton";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function LoginPage({ navigation }) {
+  // access context from auth context.
+  const { login } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,9 +38,15 @@ export default function LoginPage({ navigation }) {
             />
           </View>
           <View>
-            <CustomButton
+            {/* <CustomButton
               title="Log in"
               onPress={() => navigation.navigate("Home")}
+            /> */}
+            <CustomButton
+              title="Log in"
+              onPress={() => {
+                login(username, password);
+              }}
             />
             <CustomButton
               title="Create Account"

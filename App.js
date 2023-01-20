@@ -1,18 +1,16 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 
 // component imports:
-import StackNavigator from "./components/navigators/StackNavigator";
+import AppNav from "./components/navigators/AppNav";
+import { AuthProvider } from "./context/AuthContext";
 import store from "./redux/store";
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <StackNavigator />
-        <StatusBar style="auto" />
-      </NavigationContainer>
-    </Provider>
+    <AuthProvider>
+      <Provider store={store}>
+        <AppNav />
+      </Provider>
+    </AuthProvider>
   );
 }

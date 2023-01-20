@@ -17,14 +17,20 @@ export default function ReviewPage({ navigation }) {
   }
 
   async function getLocalFeedback() {
-    let feedback;
-    try {
-      feedback = await AsyncStorage.getItem("@User_Feedback");
-      feedback = JSON.parse(feedback);
-    } catch (err) {
-      console.log("Error in getting local keys", err);
-    }
-    console.log(feedback !== null ? feedback : "Nothing here :(");
+   // variable to store all keys.
+   let keys = [];
+   // variable to store all values.
+   let values;
+   try {
+     // get all keys from async storage.
+     keys = await AsyncStorage.getAllKeys();
+     // use keys to get values for all keys.
+     values = await AsyncStorage.multiGet(keys);
+     values[1][1] = JSON.parse(values[1][1]);
+   } catch (err) {
+     console.log("Error in getting local keys", err);
+   }
+   console.log("Stored Values:", values !== null ? values : "Nothing here :(");
   }
 
   return (

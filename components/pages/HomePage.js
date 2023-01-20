@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { View, StyleSheet, ImageBackground } from "react-native";
 import { useDispatch } from "react-redux";
+import { AuthContext } from "../../context/AuthContext";
 import CustomButton from "../buttons/CustomButton";
+import { BASE_URL } from "../../config";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function HomePage({ navigation }) {
+  const { logout } = useContext(AuthContext);
   const dispatch = useDispatch();
 
   function clearFeedback() {
@@ -14,14 +18,16 @@ export default function HomePage({ navigation }) {
   }
 
   function getStuff() {
-    fetch('http://10.39.20.4:5000/api/feedback')
-    .then((response) => {
-      return response.text();
-    }).then( t => {
-      console.log(t)
-    }).catch((err) => {
-      console.log(err);
-    });
+    fetch(`${BASE_URL}/api/feedback`)
+      .then((response) => {
+        return response.text();
+      })
+      .then((t) => {
+        console.log(t);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -37,13 +43,22 @@ export default function HomePage({ navigation }) {
             }}
           />
           <CustomButton title="Previous Feedback" />
-          <CustomButton
+          {/* <CustomButton
             title="Logout"
             onPress={() => navigation.navigate("Login")}
+          /> */}
+          <CustomButton
+            title="Logout"
+            onPress={() => {
+              logout();
+            }}
           />
           {/* temporay buttons to test out a fetch and jump to review to see persisted data */}
-          <CustomButton title="Fetch" onPress={() => getStuff()}/>
-          <CustomButton title="Review" onPress={() => navigation.navigate("Review")}/>
+          <CustomButton title="Fetch" onPress={() => getStuff()} />
+          <CustomButton
+            title="Review"
+            onPress={() => navigation.navigate("Review")}
+          />
         </View>
       </ImageBackground>
     </View>

@@ -1,5 +1,6 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
+import { BASE_URL } from "../../config";
 
 const config = {
   headers: { "Content-Type": "application/json" },
@@ -13,7 +14,7 @@ export default function* loginSaga() {
 
 function* loginUser(action) {
   try {
-    yield axios.post("http://10.39.20.4:5000/api/user/login", action.payload, config);
+    yield axios.post(`${BASE_URL}/api/user/login`, action.payload, config);
     yield put({ type: "FETCH_USER" });
   } catch (err) {
     console.log("Error with user login:", err);
@@ -27,7 +28,7 @@ function* loginUser(action) {
 
 function* logoutUser(action) {
   try {
-    yield axios.post("http://10.39.20.4:5000/api/user/logout", config);
+    yield axios.post(`${BASE_URL}/api/user/logout`, config);
     yield put({ type: "CLEAR_USER" });
   } catch (err) {
     console.log("Error with user logout:", err);
