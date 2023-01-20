@@ -1,5 +1,6 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "../../config";
 
 export default function* feedbackSaga() {

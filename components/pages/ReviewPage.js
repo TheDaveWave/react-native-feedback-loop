@@ -26,7 +26,7 @@ export default function ReviewPage({ navigation }) {
      keys = await AsyncStorage.getAllKeys();
      // use keys to get values for all keys.
      values = await AsyncStorage.multiGet(keys);
-     values[1][1] = JSON.parse(values[1][1]);
+     values[0][1] = JSON.parse(values[0][1]);
    } catch (err) {
      console.log("Error in getting local keys", err);
    }

@@ -17,19 +17,17 @@ router.post("/generate", (req, res) => {
     .query(queryText, [username])
     .then((response) => {
       const user = response && response.rows && response.rows[0];
-      console.log(user);
-      if (user) {
-        let jwtSecretKey = process.env.JWT_SECRET_KEY;
-        let data = {
-          time: Date(),
-          userId: 5,
-        };
+      // make sure the user exists and password matches.
+      if (user && encryptLib.comparePassword(password, user.password)) {
+        // delete the password so it is not sent back.
+        delete user.password;
+        // let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-        const token = jwt.sign(data, jwtSecretKey);
-
-        res.send(token);
+        // const token = jwt.sign(user, jwtSecretKey);
+        res.send(user);
       } else {
-        res.sendStatus(500);
+        console.log("User does not exist");
+        res.status(500).send("User does not exist");
       }
     })
     .catch((err) => {
@@ -37,6 +35,10 @@ router.post("/generate", (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// need to create a post request that validates user
+// checks expiration of token and if expired and user is valid
+// generate a new token.
 
 // get request that contains the JWT in the header and sends
 // verification as response.
