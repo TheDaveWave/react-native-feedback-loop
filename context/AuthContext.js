@@ -11,18 +11,17 @@ export function AuthProvider({ children }) {
   const [userToken, setUserToken] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
 
-    // use context to send jwt in header of authentication in routes?
-    
+  // use context to send jwt in header of authentication in routes?
+
   function login(username, password) {
     setLoading(true);
     axios
+      // /generate could be changed to /login
       .post(`${BASE_URL}/api/jwt/generate`, {
         username,
         password,
       })
       .then((response) => {
-        console.log(response.data);
-
         AsyncStorage.setItem("userInfo", JSON.stringify(response.data));
         AsyncStorage.setItem("userToken", response.data.token);
 
@@ -43,6 +42,13 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }
 
+  /**
+   * Make a function to clear token when token
+   * is expired. 
+   */
+
+
+  // check if there local storage has user info and a token.
   async function isLoggedIn() {
     try {
       setLoading(true);
@@ -64,7 +70,9 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, loading, userToken, userInfo }}>
+    <AuthContext.Provider
+      value={{ login, logout, loading, userToken, userInfo }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -3,6 +3,9 @@ const pool = require("../modules/pool.js");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const encryptLib = require("../modules/encryption.js");
+const {
+    rejectUnauthenticated,
+  } = require("../modules/authentication-middleware.js");
 
 //  /api/jwt
 
@@ -16,6 +19,7 @@ router.post("/generate", (req, res) => {
   pool
     .query(queryText, [username])
     .then((response) => {
+      console.log("Post login", response.rows);
       const user = response && response.rows && response.rows[0];
       // make sure the user exists and password matches.
       if (user && encryptLib.comparePassword(password, user.password)) {
@@ -42,22 +46,26 @@ router.post("/generate", (req, res) => {
 
 // get request that contains the JWT in the header and sends
 // verification as response.
-router.get("/validateToken", (req, res) => {
+/* router.get("/validateToken", (req, res) => {
   let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
   let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
   try {
     const token = req.header(tokenHeaderKey);
     const verified = jwt.verify(token, jwtSecretKey);
-
+    
     if (verified) {
       res.send("Successfully Verified");
     } else {
-      res.sendStatus(401);
+      res.sendStatus(403);
     }
   } catch (err) {
     res.status(401).send(err);
   }
+}); */
+
+router.get("/validateToken", rejectUnauthenticated, (req, res) => {  
+    res.send("Successfully Verifified.");
 });
 
 module.exports = router;
