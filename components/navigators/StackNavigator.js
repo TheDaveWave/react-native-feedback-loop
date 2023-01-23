@@ -8,6 +8,7 @@ import UnderstandingPage from "../pages/UnderstandPage";
 import CommentPage from "../pages/CommentPage";
 import ReviewPage from "../pages/ReviewPage";
 import SuccessPage from "../pages/SuccessPage";
+import FeedbackPage from "../pages/FeedbackPage";
 
 /**
  * App should move through the pages in the following order:
@@ -48,6 +49,7 @@ export default function StackNavigator() {
       <Stack.Screen name="Comment" component={CommentPage} />
       <Stack.Screen name="Review" component={ReviewPage} />
       <Stack.Screen name="Success" component={SuccessPage} />
+      <Stack.Screen name="Feedback" component={FeedbackPage} />
     </Stack.Navigator>
   );
 }

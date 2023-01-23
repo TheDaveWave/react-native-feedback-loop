@@ -24,6 +24,7 @@ function* fetchFeedback() {
       `${BASE_URL}/api/feedback/${userId.id}`,
       config
     );
+    console.log(response.data);
     yield put({ type: "SET_FEEDBACK", payload: response.data });
   } catch (err) {
     console.log("Error fetching feedback", err);

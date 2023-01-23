@@ -38,10 +38,6 @@ export default function LoginPage({ navigation }) {
             />
           </View>
           <View>
-            {/* <CustomButton
-              title="Log in"
-              onPress={() => navigation.navigate("Home")}
-            /> */}
             <CustomButton
               title="Log in"
               onPress={() => {

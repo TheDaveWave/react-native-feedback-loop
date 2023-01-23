@@ -3,8 +3,6 @@ import { View, StyleSheet, ImageBackground } from "react-native";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "../../context/AuthContext";
 import CustomButton from "../buttons/CustomButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 const image = require("../../assets/dripglobe.jpeg");
 
@@ -30,7 +28,10 @@ export default function HomePage({ navigation }) {
               clearFeedback();
             }}
           />
-          <CustomButton title="Previous Feedback" />
+          <CustomButton
+            title="Previous Feedback"
+            onPress={() => navigation.navigate("Feedback")}
+          />
           <CustomButton
             title="Logout"
             onPress={() => {
