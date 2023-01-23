@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
-const userStrategy = require("../strategies/user.strategy.js");
 const encryptLib = require("../modules/encryption.js");
 const jwt = require("jsonwebtoken");
 
@@ -53,12 +52,10 @@ router.post("/register", (req, res, next) => {
 
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(username);
   const queryText = `SELECT * FROM "users" WHERE "username"=$1;`;
   pool
     .query(queryText, [username])
     .then((response) => {
-      console.log("Post login", response.rows);
       const user = response && response.rows && response.rows[0];
       // make sure the user exists and password matches.
       if (user && encryptLib.comparePassword(password, user.password)) {
@@ -79,6 +76,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// may not be needed, check auth context.
 router.post("/logout", (req, res) => {
   req.logOut();
   res.sendStatus(200);

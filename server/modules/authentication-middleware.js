@@ -1,13 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-// utilize the jwt verify method and use it to replace
-// the passport method of authenticating a user.
+// utilize the jwt verify method to authorize user requests.
+// validates token and allows user to make requests.
 function rejectUnauthenticated(req, res, next) {
-  // if(req.isAuthenticated()) {
-  //     next();
-  // } else {
-  //     res.sendStatus(403);
-  // }
   let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
   let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -16,7 +11,6 @@ function rejectUnauthenticated(req, res, next) {
     const verified = jwt.verify(token, jwtSecretKey);
 
     if (verified) {
-      // res.send("Successfully Verified.");
       next();
     } else {
       res.sendStatus(403);

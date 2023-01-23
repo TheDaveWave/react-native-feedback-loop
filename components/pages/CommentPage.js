@@ -34,9 +34,8 @@ export default function CommentPage({ navigation }) {
   // adds a key value pair to local storage.
   async function addLocalKey() {
     try {
-      // await AsyncStorage.setItem(routeName, inputValue.toString());
       await AsyncStorage.mergeItem(
-        "@User_Feedback",
+        "userFeedback",
         JSON.stringify({ [routeName]: inputValue.toString() })
       );
     } catch (err) {

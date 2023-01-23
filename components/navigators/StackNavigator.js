@@ -63,7 +63,7 @@ export default function StackNavigator() {
       />
       <Stack.Screen name="Feeling" component={FeelingPage} />
       <Stack.Screen name="Support" component={SupportPage} />
-      <Stack.Screen name="Understand" component={UnderstandingPage} />
+      <Stack.Screen name="Understanding" component={UnderstandingPage} />
       <Stack.Screen name="Comment" component={CommentPage} />
       <Stack.Screen name="Review" component={ReviewPage} />
       <Stack.Screen name="Success" component={SuccessPage} />

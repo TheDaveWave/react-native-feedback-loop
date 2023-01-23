@@ -5,20 +5,20 @@ import CommentDisplay from "../textComponents/CommentDisplay";
 import ScoreDisplay from "../textComponents/ScoreDisplay";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { BASE_URL } from "../../config";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function ReviewPage({ navigation }) {
-  const { userToken } = useContext(AuthContext);
   const dispatch = useDispatch();
 
   function clearFeedback() {
     dispatch({
       type: "CLEAR_FEEDBACK",
+    });
+  }
+
+  function submitFeedback() {
+    dispatch({
+      type: "POST_FEEDBACK",
     });
   }
 
@@ -39,22 +39,6 @@ export default function ReviewPage({ navigation }) {
     console.log("Stored Values:", values !== null ? values : "Nothing here :(");
   }
 
-  function testAuthMiddleware() {
-    const header = {
-      'test': userToken, 
-    };
-    axios
-      .get(`${BASE_URL}/api/jwt/validateToken`, {
-        headers: header,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
@@ -71,6 +55,7 @@ export default function ReviewPage({ navigation }) {
             title="Submit Feedback"
             onPress={() => {
               navigation.navigate("Success");
+              submitFeedback();
               clearFeedback();
             }}
           />
@@ -80,7 +65,6 @@ export default function ReviewPage({ navigation }) {
           {/* clears out the local storage does not update context
             so user is still verified. */}
           <CustomButton title="Clear" onPress={() => AsyncStorage.clear()} />
-          <CustomButton title="Auth" onPress={() => testAuthMiddleware()}/>
         </View>
       </ImageBackground>
     </View>

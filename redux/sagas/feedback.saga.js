@@ -12,7 +12,18 @@ export default function* feedbackSaga() {
 // fetches feedback and stores it into redux.
 function* fetchFeedback() {
   try {
-    const response = yield axios.get(`${BASE_URL}/api/feedback/user`);
+    let token = yield AsyncStorage.getItem("userToken");
+    const config = {
+      headers: {
+        test: token,
+      },
+    };
+    let userId = yield AsyncStorage.getItem("userInfo");
+    userId = JSON.parse(userId);
+    const response = yield axios.get(
+      `${BASE_URL}/api/feedback/${userId.id}`,
+      config
+    );
     yield put({ type: "SET_FEEDBACK", payload: response.data });
   } catch (err) {
     console.log("Error fetching feedback", err);
@@ -20,9 +31,20 @@ function* fetchFeedback() {
 }
 
 // posts new feedback.
-function* postFeedback(action) {
+function* postFeedback() {
   try {
-    yield axios.post(`${BASE_URL}/api/feedback`, action.payload);    
+    let token = yield AsyncStorage.getItem("userToken");
+    const config = {
+      headers: {
+        test: token,
+      },
+    };
+    let userId = yield AsyncStorage.getItem("userInfo");
+    userId = JSON.parse(userId).id;
+    let feedback = yield AsyncStorage.getItem("userFeedback");
+    feedback = JSON.parse(feedback);
+    feedback.userId = userId;
+    yield axios.post(`${BASE_URL}/api/feedback`, feedback, config);
   } catch (err) {
     console.log("Error posting feedback", err);
   }
@@ -30,9 +52,15 @@ function* postFeedback(action) {
 
 // deletes a feedback entry.
 function* deleteFeedback(action) {
-    try {
-        yield axios.delete(`${BASE_URL}/api/feedback/${action.payload}`);
-    } catch (err) {
-        console.log("Error in deleting feedback", err);
-    }
+  try {
+    let token = yield AsyncStorage.getItem("userToken");
+    const config = {
+      headers: {
+        test: token,
+      },
+    };
+    yield axios.delete(`${BASE_URL}/api/feedback/${action.payload}`, config);
+  } catch (err) {
+    console.log("Error in deleting feedback", err);
+  }
 }

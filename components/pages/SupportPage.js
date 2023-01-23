@@ -38,7 +38,7 @@ export default function SupportPage({ navigation }) {
               <CustomButton
                 title="Next"
                 onPress={() => {
-                  navigation.navigate("Understand");
+                  navigation.navigate("Understanding");
                   addSupport();
                 }}
               />

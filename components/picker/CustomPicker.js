@@ -24,12 +24,12 @@ export default function CustomPicker({
       let keys = await AsyncStorage.getAllKeys();
       if (keys.length === 0) {
         await AsyncStorage.setItem(
-          "@User_Feedback",
+          "userFeedback",
           JSON.stringify({ [localKey]: selectedValue.toString() })
         );
       } else {
         await AsyncStorage.mergeItem(
-          "@User_Feedback",
+          "userFeedback",
           JSON.stringify({ [localKey]: selectedValue.toString() })
         );
       }
