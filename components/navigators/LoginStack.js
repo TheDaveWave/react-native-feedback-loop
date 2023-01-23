@@ -11,9 +11,6 @@ export default function LoginStack() {
     <Stack.Navigator
       initialRouteName="Login"
       screenOptions={{
-        // headerStyle: {
-        //   backgroundColor: "#122E72",
-        // },
         headerTintColor: "#fff",
         headerShown: false,
         headerTransparent: true,

@@ -10,16 +10,14 @@ const image = require("../../assets/dripglobe.jpeg");
 export default function ReviewPage({ navigation }) {
   const dispatch = useDispatch();
 
-  function clearFeedback() {
-    dispatch({
-      type: "CLEAR_FEEDBACK",
-    });
-  }
-
   function submitFeedback() {
     dispatch({
       type: "POST_FEEDBACK",
     });
+    dispatch({
+      type: "CLEAR_FEEDBACK",
+    });
+    navigation.navigate("Success");
   }
 
   async function getLocalFeedback() {
@@ -54,9 +52,7 @@ export default function ReviewPage({ navigation }) {
           <CustomButton
             title="Submit Feedback"
             onPress={() => {
-              navigation.navigate("Success");
               submitFeedback();
-              clearFeedback();
             }}
           />
           <CustomButton title="Back" onPress={() => navigation.goBack()} />

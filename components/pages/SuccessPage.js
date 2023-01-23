@@ -1,9 +1,18 @@
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 import CustomButton from "../buttons/CustomButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function SuccessPage({ navigation }) {
+  async function clearFeedback() {
+    try {
+      await AsyncStorage.removeItem("userFeedback");
+    } catch (err) {
+      console.log("Error clearing local user feedback");
+    }
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
@@ -11,11 +20,17 @@ export default function SuccessPage({ navigation }) {
           <Text style={styles.bodyHeader}>Feedback Submitted!</Text>
           <CustomButton
             title="Submit New Feedback"
-            onPress={() => navigation.navigate("Feeling")}
+            onPress={() => {
+              clearFeedback();
+              navigation.navigate("Feeling");
+            }}
           />
           <CustomButton
             title="Home"
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => {
+              clearFeedback();
+              navigation.navigate("Home");
+            }}
           />
         </View>
       </ImageBackground>

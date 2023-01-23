@@ -19,7 +19,6 @@ app.use("/api/jwt", jwtRouter);
 
 app.use(express.static("build"));
 
-// 192.168.0.88
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

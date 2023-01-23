@@ -3,7 +3,8 @@ import { View, StyleSheet, ImageBackground } from "react-native";
 import { useDispatch } from "react-redux";
 import { AuthContext } from "../../context/AuthContext";
 import CustomButton from "../buttons/CustomButton";
-import { BASE_URL } from "../../config";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const image = require("../../assets/dripglobe.jpeg");
 
@@ -15,19 +16,6 @@ export default function HomePage({ navigation }) {
     dispatch({
       type: "CLEAR_FEEDBACK",
     });
-  }
-
-  function getStuff() {
-    fetch(`${BASE_URL}/api/feedback`)
-      .then((response) => {
-        return response.text();
-      })
-      .then((t) => {
-        console.log(t);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   return (
@@ -43,18 +31,12 @@ export default function HomePage({ navigation }) {
             }}
           />
           <CustomButton title="Previous Feedback" />
-          {/* <CustomButton
-            title="Logout"
-            onPress={() => navigation.navigate("Login")}
-          /> */}
           <CustomButton
             title="Logout"
             onPress={() => {
               logout();
             }}
           />
-          {/* temporay buttons to test out a fetch and jump to review to see persisted data */}
-          <CustomButton title="Fetch" onPress={() => getStuff()} />
           <CustomButton
             title="Review"
             onPress={() => navigation.navigate("Review")}

@@ -29,30 +29,11 @@ export default function StackNavigator() {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        // headerStyle: {
-        //   backgroundColor: "#122E72",
-        // },
         headerTintColor: "#fff",
         headerShown: false,
         headerTransparent: true,
       }}
     >
-      {/* <Stack.Screen 
-        name="Signup"
-        component={SignupPage}
-        options={{
-          headerShown: true,
-          headerBackVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginPage}
-        options={{
-          headerShown: true,
-          headerBackVisible: false,
-        }}
-      /> */}
       <Stack.Screen
         name="Home"
         component={HomePage}

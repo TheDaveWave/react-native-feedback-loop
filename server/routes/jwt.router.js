@@ -23,14 +23,4 @@ router.post("/generate", (req, res) => {
   res.send("Needs to generate token.");
 });
 
-// need to create a post request that validates user
-// checks expiration of token and if expired and user is valid
-// generate a new token.
-
-// get request that contains the JWT in the header and sends
-// verification as response.
-router.get("/validateToken", rejectUnauthenticated, (req, res) => {
-  res.send("Successfully Verifified.");
-});
-
 module.exports = router;
