@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     setLoading(true);
     axios
       // /generate could be changed to /login
-      .post(`${BASE_URL}/api/jwt/generate`, {
+      .post(`${BASE_URL}/api/jwt/login`, {
         username,
         password,
       })

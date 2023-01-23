@@ -51,13 +51,33 @@ router.post("/register", (req, res, next) => {
     });
 });
 
-router.post(
-  "/login",
-  // userStrategy.authenticate('local'),
-  (req, res) => {
-    res.sendStatus(200);
-  }
-);
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  console.log(username);
+  const queryText = `SELECT * FROM "users" WHERE "username"=$1;`;
+  pool
+    .query(queryText, [username])
+    .then((response) => {
+      console.log("Post login", response.rows);
+      const user = response && response.rows && response.rows[0];
+      // make sure the user exists and password matches.
+      if (user && encryptLib.comparePassword(password, user.password)) {
+        // delete the password so it is not sent back.
+        delete user.password;
+        // let jwtSecretKey = process.env.JWT_SECRET_KEY;
+
+        // const token = jwt.sign(user, jwtSecretKey);
+        res.send(user);
+      } else {
+        console.log("User does not exist");
+        res.status(500).send("User does not exist");
+      }
+    })
+    .catch((err) => {
+      console.log("Error with query for user", err);
+      res.sendStatus(500);
+    });
+});
 
 router.post("/logout", (req, res) => {
   req.logOut();
