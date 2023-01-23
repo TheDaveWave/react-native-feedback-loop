@@ -22,8 +22,6 @@ export default function AppNav() {
   return (
     <NavigationContainer>
       {userToken !== null ? <StackNavigator /> : <LoginStack />}
-      {/* <StackNavigator /> */}
-      {/* <LoginStack /> */}
       <StatusBar style="auto" />
     </NavigationContainer>
   );

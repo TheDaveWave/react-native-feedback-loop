@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -7,13 +7,14 @@ import {
   Keyboard,
   Text,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { AuthContext } from "../../context/AuthContext";
 import CustomButton from "../buttons/CustomButton";
 
 const image = require("../../assets/dripglobe.jpeg");
 
 export default function SignupPage({ navigation }) {
-  const dispatch = useDispatch();
+  // access context from auth context.
+  const { register } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,24 +31,17 @@ export default function SignupPage({ navigation }) {
   }
 
   // register a new user.
-  function register() {
+  function signup() {
     let check = false;
     if (!username || !password || !confirmPass) {
       check = false;
     } else if (passwordMatch() === false && username && password) {
-      dispatch({
-        type: "REGISTER",
-        payload: {
-          username,
-          password,
-        },
-      });
+      register(username, password);
       check = true;
     }
-    console.log(check);
-    if(check) {
+    /* if (check) {
       navigation.navigate("Home");
-    }
+    } */
   }
 
   return (
@@ -82,10 +76,7 @@ export default function SignupPage({ navigation }) {
             />
           </View>
           <View>
-            <CustomButton
-              title="Sign Up"
-              onPress={() => register()}
-            />
+            <CustomButton title="Sign Up" onPress={() => signup()} />
             <CustomButton
               title="Login"
               onPress={() => navigation.navigate("Login")}

@@ -11,7 +11,6 @@ export function AuthProvider({ children }) {
   const [userToken, setUserToken] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
 
-  
   function login(username, password) {
     setLoading(true);
     axios
@@ -30,6 +29,24 @@ export function AuthProvider({ children }) {
         console.log("Login Error", err);
       });
     setLoading(false);
+  }
+
+  function register(username, password) {
+    axios
+      .post(`${BASE_URL}/api/user/register`, {
+        username,
+        password,
+      })
+      .then((response) => {
+        AsyncStorage.setItem("userInfo", JSON.stringify(response.data));
+        AsyncStorage.setItem("userToken", response.data.token);
+
+        setUserInfo(response.data);
+        setUserToken(response.data.token);
+      })
+      .catch((err) => {
+        console.log("Error in registering user", err);
+      });
   }
 
   function logout() {
@@ -68,7 +85,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ login, logout, loading, userToken, userInfo }}
+      value={{ login, logout, register, loading, userToken, userInfo }}
     >
       {children}
     </AuthContext.Provider>
