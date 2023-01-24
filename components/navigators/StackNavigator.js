@@ -8,7 +8,7 @@ import UnderstandingPage from "../pages/UnderstandPage";
 import CommentPage from "../pages/CommentPage";
 import ReviewPage from "../pages/ReviewPage";
 import SuccessPage from "../pages/SuccessPage";
-import FeedbackPage from "../pages/FeedbackPage";
+import FeedbackPage from "../pages/PreviousFeedbackPage/PreviousFeedbackPage";
 
 /**
  * App should move through the pages in the following order:

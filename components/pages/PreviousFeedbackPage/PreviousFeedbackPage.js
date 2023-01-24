@@ -1,20 +1,12 @@
 import { useEffect } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "../buttons/CustomButton";
 
-const image = require("../../assets/dripglobe.jpeg");
+// component imports:
+import CustomButton from "../../buttons/CustomButton";
+import FeedbackItem from "./FeedbackItem";
 
-function FeedbackItem({ item }) {
-    let date = new Date(item.date);
-    let formattedDate = `${(date.getUTCMonth() + 1)}/${date.getUTCDate()}/${date.getUTCFullYear()}`;
-
-  return (
-    <View>
-      <Text>{formattedDate}</Text>
-    </View>
-  );
-}
+const image = require("../../../assets/dripglobe.jpeg");
 
 export default function FeedbackPage({ navigation }) {
   const feedback = useSelector((store) => store.feedbackReducer.feedback);
@@ -35,11 +27,13 @@ export default function FeedbackPage({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
         <View style={styles.body}>
+          {/* the element / container to display the previous feedback items. */}
           <View>
             {feedback.map((item) => (
               <FeedbackItem key={item.id} item={item} />
             ))}
           </View>
+          {/* container to house buttons */}
           <View>
             <CustomButton
               title="Home"
