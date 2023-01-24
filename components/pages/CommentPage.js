@@ -34,10 +34,14 @@ export default function CommentPage({ navigation }) {
   // adds a key value pair to local storage.
   async function addLocalKey() {
     try {
-      await AsyncStorage.mergeItem(
-        "userFeedback",
-        JSON.stringify({ [routeName]: inputValue.toString() })
-      );
+      if(!inputValue) {
+        return;
+      } else {
+        await AsyncStorage.mergeItem(
+          "userFeedback",
+          JSON.stringify({ [routeName]: inputValue.toString() })
+        );
+      }
     } catch (err) {
       console.log("Error adding key", err);
     }
