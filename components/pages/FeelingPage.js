@@ -34,7 +34,6 @@ export default function FeelingPage({ navigation }) {
             localKey={routeName}
           />
           <View style={styles.bottom}>
-            <Text>{selectedValue}</Text>
             <View style={styles.bodyBtnContainer}>
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton

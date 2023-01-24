@@ -61,7 +61,6 @@ export default function CommentPage({ navigation }) {
             onChangeText={setInputValue}
           />
           <View style={styles.bottom}>
-            <Text>Current Input: {inputValue}</Text>
             <View style={styles.bodyBtnContainer}>
               <CustomButton title="Back" onPress={() => navigation.goBack()} />
               <CustomButton

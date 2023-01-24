@@ -38,10 +38,6 @@ export default function HomePage({ navigation }) {
               logout();
             }}
           />
-          <CustomButton
-            title="Review"
-            onPress={() => navigation.navigate("Review")}
-          />
         </View>
       </ImageBackground>
     </View>

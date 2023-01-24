@@ -56,11 +56,6 @@ export default function ReviewPage({ navigation }) {
             }}
           />
           <CustomButton title="Back" onPress={() => navigation.goBack()} />
-          {/* temporary log button to check local storage / async storage */}
-          <CustomButton title="Log" onPress={() => getLocalFeedback()} />
-          {/* clears out the local storage does not update context
-            so user is still verified. */}
-          <CustomButton title="Clear" onPress={() => AsyncStorage.clear()} />
         </View>
       </ImageBackground>
     </View>
