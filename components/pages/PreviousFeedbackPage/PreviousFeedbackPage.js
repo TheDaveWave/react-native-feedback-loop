@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, View, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // component imports:
@@ -26,21 +26,23 @@ export default function FeedbackPage({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
-        <View style={styles.body}>
-          {/* the element / container to display the previous feedback items. */}
-          <View>
-            {feedback.map((item) => (
-              <FeedbackItem key={item.id} item={item} />
-            ))}
+          <View style={styles.body}>
+            {/* the element / container to display the previous feedback items. */}
+            <View style={styles.feedbackContainer}>
+              <FlatList
+                data={feedback}
+                renderItem={({ item }) => <FeedbackItem item={item} />}
+                keyExtractor={(item) => item.id}
+              />
+            </View>
+            {/* container to house buttons */}
+            <View style={styles.btnContainer}>
+              <CustomButton
+                title="Home"
+                onPress={() => navigation.navigate("Home")}
+              />
+            </View>
           </View>
-          {/* container to house buttons */}
-          <View>
-            <CustomButton
-              title="Home"
-              onPress={() => navigation.navigate("Home")}
-            />
-          </View>
-        </View>
       </ImageBackground>
     </View>
   );
@@ -56,9 +58,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   body: {
-    width: "85%",
+    width: "65%",
     backgroundColor: "#F2F3D9",
     borderRadius: 10,
     padding: 20,
+    maxHeight: "60%",
+  },
+  btnContainer: {
+    marginTop: 5,
+    backgroundColor: "#F2F3D9",
+    width: "116.75%",
+    alignSelf: "center",
+    borderRadius: 10,
+    padding: 20,
+  },
+  feedbackContainer: {
+    alignItems: "center",
   },
 });

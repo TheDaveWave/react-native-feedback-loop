@@ -13,6 +13,11 @@ export default function* feedbackSaga() {
 function* fetchFeedback() {
   try {
     let token = yield AsyncStorage.getItem("userToken");
+    /**
+     * had to put config in each saga / generator function 
+     * so the token could be read as a string and not a promise 
+     * as the return value from the AsyncStorage getItem() method.
+    */
     const config = {
       headers: {
         test: token,
@@ -24,7 +29,6 @@ function* fetchFeedback() {
       `${BASE_URL}/api/feedback/${userId.id}`,
       config
     );
-    console.log(response.data);
     yield put({ type: "SET_FEEDBACK", payload: response.data });
   } catch (err) {
     console.log("Error fetching feedback", err);
@@ -56,11 +60,13 @@ function* deleteFeedback(action) {
   try {
     let token = yield AsyncStorage.getItem("userToken");
     const config = {
+      data: action.payload,
       headers: {
         test: token,
       },
     };
-    yield axios.delete(`${BASE_URL}/api/feedback/${action.payload}`, config);
+    yield axios.delete(`${BASE_URL}/api/feedback`, config);
+    yield put({type: "FETCH_FEEDBACK"});
   } catch (err) {
     console.log("Error in deleting feedback", err);
   }
