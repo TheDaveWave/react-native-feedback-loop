@@ -67,6 +67,8 @@ Can't forget these:
 
 -[React-Native-Expo](https://expo.dev/)
 
+-[Async-Storage](https://react-native-async-storage.github.io/async-storage/docs/install)
+
 -[JWT](https://jwt.io/)
 
 -[Postgres](https://www.postgresql.org/)
