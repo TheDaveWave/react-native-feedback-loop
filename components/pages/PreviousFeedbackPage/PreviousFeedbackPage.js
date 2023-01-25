@@ -26,23 +26,26 @@ export default function FeedbackPage({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} style={styles.image} resizeMode="cover">
-          <View style={styles.body}>
-            {/* the element / container to display the previous feedback items. */}
-            <View style={styles.feedbackContainer}>
-              <FlatList
-                data={feedback}
-                renderItem={({ item }) => <FeedbackItem item={item} />}
-                keyExtractor={(item) => item.id}
-              />
-            </View>
-            {/* container to house buttons */}
-            <View style={styles.btnContainer}>
-              <CustomButton
-                title="Home"
-                onPress={() => navigation.navigate("Home")}
-              />
-            </View>
+        <View style={styles.body}>
+          {/* the element / container to display the previous feedback items. */}
+          <View style={styles.feedbackContainer}>
+            {/* Flatlist allows for scroll loading, which increases performance.
+                  only renders what is seen and does not render what is out of view.
+               */}
+            <FlatList
+              data={feedback}
+              renderItem={({ item }) => <FeedbackItem item={item} />}
+              keyExtractor={(item) => item.id}
+            />
           </View>
+          {/* container to house buttons */}
+          <View style={styles.btnContainer}>
+            <CustomButton
+              title="Home"
+              onPress={() => navigation.navigate("Home")}
+            />
+          </View>
+        </View>
       </ImageBackground>
     </View>
   );

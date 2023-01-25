@@ -49,7 +49,15 @@ export default function StackNavigator() {
       <Stack.Screen name="Comment" component={CommentPage} />
       <Stack.Screen name="Review" component={ReviewPage} />
       <Stack.Screen name="Success" component={SuccessPage} />
-      <Stack.Screen name="Feedback" component={FeedbackPage} />
+      <Stack.Screen
+        name="Feedback"
+        component={FeedbackPage}
+        options={{
+          headerShown: true,
+          headerBackVisible: false,
+          title: "Previous Feedback",
+        }}
+      />
     </Stack.Navigator>
   );
 }

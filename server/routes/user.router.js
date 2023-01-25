@@ -17,10 +17,10 @@ router.post("/register", (req, res) => {
       const user = response && response.rows && response.rows[0];
       // delete password from user object.
       delete user.password;
-      // create secretKey
+      // access secretKey to sign the token.
       let jwtSecretKey = process.env.JWT_SECRET_KEY;
-      let tokenDate = Date();
-      user.token_date = tokenDate;
+      // let tokenDate = Date();
+      // user.token_date = tokenDate;
       // create token.
       const token = jwt.sign(user, jwtSecretKey);
       // UPDATE the user and add their token and token date. 
@@ -33,6 +33,7 @@ router.post("/register", (req, res) => {
           // delete the password from the user object given by the response.
           delete user.password;
           // send the client the updated user information.
+          console.log(user);
           res.send(user);
         })
         .catch((err) => {
