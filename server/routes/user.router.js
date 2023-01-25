@@ -23,12 +23,17 @@ router.post("/register", (req, res) => {
       user.token_date = tokenDate;
       // create token.
       const token = jwt.sign(user, jwtSecretKey);
-      // UPDATE the user and add their token and token date.
-      const queryText = `UPDATE "users" SET "token"=$1 WHERE "id"=$2;`;
+      // UPDATE the user and add their token and token date. 
+      const queryText = `UPDATE "users" SET "token"=$1 WHERE "id"=$2 RETURNING *;`;
       pool
         .query(queryText, [token, user.id])
-        .then(() => {
-          res.sendStatus(201);
+        .then((response) => {
+          // handle errors getting user information.
+          const user = response.rows && response.rows && response.rows[0];
+          // delete the password from the user object given by the response.
+          delete user.password;
+          // send the client the updated user information.
+          res.send(user);
         })
         .catch((err) => {
           console.log("Error in generating token for new user", err);
