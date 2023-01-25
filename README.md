@@ -28,19 +28,25 @@ The gauges mentioned are choices between 1 meaning terrible, and 5 meaning excel
 
 5. After choosing to enter a comment or not the user will be directed to the `review` page.
     - Here the selections for each part of the form are shown.
+
     <img src="./assets/preview-images/review.PNG" width="250">
 
 6. On the `review` page the user may select `submit` to submit the form to the database.
     - Selecting the `submit` button the success screen will appear and the feedback will be added to the database. The success screen will have two buttons.
-    <img src="./assets/preview-images/success.PNG" width="250">
+
+        <img src="./assets/preview-images/success.PNG" width="250">
+
     - Selecting `Submit New Feedback` will allow the user to submit another form.
     - Selecting `Home` will redirect the user back to the Home screen.
 
 7. On the Home screen, the user can tap `Previous Feedback` to be directed to the Previous Feedback Screen.
     - Here the user can see a list of their previous entries.
-    <img src="./assets/preview-images/previous-feedback.PNG" width="250">
+
+        <img src="./assets/preview-images/previous-feedback.PNG" width="250">
+
     - The user can `long-press` an entry to see a modal with the entry information and a `delete` button to delete the entry.
-    <img src="./assets/preview-images/feedback-modal.PNG" width="250">
+
+        <img src="./assets/preview-images/feedback-modal.PNG" width="250">
 
 ## Prerequisites
 
